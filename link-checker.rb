@@ -21,7 +21,7 @@ def link_cache
 end
 
 def credentials
-  creds = File.join( '.', 'creds.yml')
+  creds = File.join( '.', 'credentials.yml')
   return [] unless File.exist?(creds)
   creds = YAML.load(File.read(creds))[:delicious]
   [creds[:user], creds[:password]]
