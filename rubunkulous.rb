@@ -117,8 +117,10 @@ def check(links)
 
     begin
       response = Curl::Easy.perform(url) do |curl|
-        curl.follow_location = true
-        curl.max_redirects = 3
+        curl.follow_location  = true
+        curl.max_redirects    = 2
+        curl.connect_timeout  = 3
+        curl.timeout          = 5 # total request timeout; saves us from having to wait for the request to complete if you bookmarked a 500mb file or something...
       end
     rescue
       log_failed(url, desc, response ? response.response_code : 666)
