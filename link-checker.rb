@@ -85,12 +85,11 @@ def links
 
   puts "Loading link data saved from previous run (this could take a second...)"
   xmldoc = Document.new( File.new(link_cache))
-
   xmldoc.elements.to_a('posts/post')
 end
 
 def log_failed(url, desc, error)
-  # truncate xattr names to 128 chars or suffer the consequences
+  # truncate xattr key names to 128 chars or suffer the consequences
   @cache.store(url[0..127], "#{desc} (#{url}) failed with #{error} at #{Time.now.to_s}") 
 end
 
