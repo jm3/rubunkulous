@@ -13,13 +13,8 @@ require 'net/https'
 require 'rexml/document'
 include REXML
 
-def max_xattr_key_length
-  126 # i swear to christ...
-end
-
-def pointer_key
-  'index_pointer'
-end
+Pointer_Key = 'index_pointer'
+Max_XAttr_Key_Length = 126 # i swear to christ...
 
 def link_cache
   f = '.cached_links.xml'
@@ -85,7 +80,7 @@ end
 
 def log_failed(url, desc, error)
   # truncate xattr key names to 128 chars or suffer the consequences
-  @cache.store(url[0..max_xattr_key_length], "#{desc} (#{url}) failed with #{error} at #{Time.now.to_s}") 
+  @cache.store(url[0..Max_XAttr_Key_Length], "#{desc} (#{url}) failed with #{error} at #{Time.now.to_s}") 
 end
 
 def check(links)
@@ -101,7 +96,7 @@ def check(links)
   end
 
   @cache = Moneta::Xattr.new(:file => File.join(File.dirname(__FILE__), ".moneta_cache", "xattr_cache"))
-  last_index = @cache[pointer_key] || 0
+  last_index = @cache[Pointer_Key] || 0
 
   puts "Left off at link ##{last_index} (of #{links.size} total links)." if last_index > 0
 
@@ -130,11 +125,11 @@ def check(links)
     end
 
     @links_checked += 1
-    @cache.store(pointer_key, last_index + @links_checked)
+    @cache.store(Pointer_Key, last_index + @links_checked)
     next unless response
 
     if response.response_code != 200
-      puts "x FAIL #{response.response_code} (#{@links_checked})"
+      puts "x FAIL #{response.response_code} #{url} (#{@links_checked})"
       @num_fails += 1
       log_failed(url, desc, response.response_code)
     else
