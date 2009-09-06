@@ -1,4 +1,4 @@
-#!/opt/local/bin/ruby
+#!/usr/bin/env ruby
 # A reentrant link-checker for delicious power-users, stress-tested with stores of 12,000+ links.
 # by jm3 (John Manoogian III)
 
