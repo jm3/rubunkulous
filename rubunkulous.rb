@@ -13,6 +13,10 @@ require 'net/https'
 require 'rexml/document'
 include REXML
 
+def max_xattr_key_length
+  126 # i swear to christ...
+end
+
 def pointer_key
   'index_pointer'
 end
@@ -67,7 +71,11 @@ def links
     File.open(link_cache, 'w') {|f| f.write(xml) }
 
     # by default, the Delicious API returns reponses with encoding errors; this fixes them:
-    `tidy -xml .cached_links.xml &> /dev/null`
+    if `which tidy`.empty?
+      puts "WARNING: you don't have tidy installed, which means that occasional errors in Delicious's API xml may hang up Rubunkulous. Try: sudo port install tidy  to get it."
+    else
+      `tidy -xml .cached_links.xml &> /dev/null` unless `which tidy`.empty?
+    end
   end
 
   puts "Loading link data saved from previous run (this could take a second...)"
@@ -77,7 +85,7 @@ end
 
 def log_failed(url, desc, error)
   # truncate xattr key names to 128 chars or suffer the consequences
-  @cache.store(url[0..127], "#{desc} (#{url}) failed with #{error} at #{Time.now.to_s}") 
+  @cache.store(url[0..max_xattr_key_length], "#{desc} (#{url}) failed with #{error} at #{Time.now.to_s}") 
 end
 
 def check(links)
