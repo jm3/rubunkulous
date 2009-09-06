@@ -11,6 +11,12 @@
  * Resilient to control-c interrupts, will resume checking where left off.
  * [Delicious API](http://delicious.com/help/api) responses cached locally so they need only be retrieved once.
 
+## Usage
+
+ 1. install [tidy](http://tidy.sourceforge.net/#binaries) (sudo port install tidy should work on a mac) if you don't already have it; required to clean up the bullisht XML that the delicious API emits
+ 2. enter your delicious username and password into credentials.yml
+ 3. ./link-checker.rb
+
 ## Todo
 
  * cool animated progress indicator with (n)curses
