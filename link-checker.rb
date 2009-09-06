@@ -86,9 +86,6 @@ def links
   puts "Loading link data saved from previous run (this could take a second...)"
   xmldoc = Document.new( File.new(link_cache))
 
-  # not reliable: 
-  # puts "Loaded #{xmldoc.root.size - 3} links." # subtract 3 elments for: 2 root node tags + 1 xml decl tag
-
   xmldoc.elements.to_a('posts/post')
 end
 
