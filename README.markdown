@@ -4,11 +4,12 @@
 
 ## Features
 
+ * Dead links are persisted in a [Moneta cache](http://github.com/wycats/moneta/tree/master) for you to deal with as you please, e.g.
+
+     xatttr .moneta_cache/xattr_cache | xargs -n1 -I foo curl "http://api.delicious.com/delete?url=foo"
+
  * Resilient to control-c interrupts, will resume checking where left off.
  * Delicious API responses cached locally so they need only be retrieved once.
- * Dead links persisted in a [Moneta cache](http://github.com/wycats/moneta/tree/master) for you to deal with as you please, e.g.
-
-     xatttr .moneta_cache/xattr_cache | xargs -n1 -I foo curl "http://api.delicious.com/delete?url=foo"@
 
 ## Todo
 
