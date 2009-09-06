@@ -1,4 +1,4 @@
-# Link Checker
+# Rubunkulous!
 
 **A reentrant link-checker for delicious power-users, stress-tested with stores of 12,000+ links.**
 
@@ -15,7 +15,9 @@
 
  1. install [tidy](http://tidy.sourceforge.net/#binaries) (sudo port install tidy should work on a mac) if you don't already have it; required to clean up the bullisht XML that the delicious API emits
  2. enter your delicious username and password into credentials.yml
- 3. ./link-checker.rb
+ 3. ./rubunkulous.rb
+
+Rubunkulous is designed to perform well despite network errors, curl timeouts, etc. If it dies due to an uncaught exception (it shouldn't), just restart it and it will pick up where it left off.
 
 ## Todo
 
