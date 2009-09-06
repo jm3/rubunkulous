@@ -16,6 +16,14 @@ include REXML
 Pointer_Key = 'index_pointer'
 Max_XAttr_Key_Length = 126 # i swear to christ...
 
+@start_override = 0
+
+ARGV.each do|arg|
+  if arg =~ /--start=(\d+)/ or arg =~ /^(\d+)$/
+    @start_override = $1.to_i
+  end
+end
+
 def link_cache
   f = '.cached_links.xml'
   File.writable?('.') ? File.join('.', f) : File.join(File.expand_path('~'), f)
@@ -96,7 +104,7 @@ def check(links)
   end
 
   @cache = Moneta::Xattr.new(:file => File.join(File.dirname(__FILE__), ".moneta_cache", "xattr_cache"))
-  last_index = @cache[Pointer_Key] || 0
+  last_index = (@start_override > 0 ? @start_override : nil) || @cache[Pointer_Key] || 0
 
   puts "Left off at link ##{last_index} (of #{links.size} total links)." if last_index > 0
 
