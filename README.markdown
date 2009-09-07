@@ -8,7 +8,7 @@
 
         xattr .moneta_cache/xattr_cache | xargs -n1 -I foo curl "http://api.delicious.com/delete?url=foo"
 
- * Fully stateful and Resilient to control-c interrupts; pointers to any failed links plus the last-checked link are maintained in the Moneta store for lossless reentrance.
+ * Fully stateful / self-healing; the last-checked link and any failed links are cached in the Moneta store for lossless reentrance.
  * [Delicious API](http://delicious.com/help/api) responses cached locally so they need only be retrieved once.
 
 ## Usage
