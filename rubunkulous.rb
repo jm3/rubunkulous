@@ -86,11 +86,6 @@ def links
   xmldoc.elements.to_a('posts/post')
 end
 
-def log_failed(url, desc, error)
-  # truncate xattr key names to 128 chars or suffer the consequences
-  @cache.store(url[0..Max_XAttr_Key_Length], "#{desc} (#{url}) failed with #{error} at #{Time.now.to_s}") 
-end
-
 def check(links)
   return unless links.size > 0
   interrupted = false
@@ -101,6 +96,11 @@ def check(links)
   def print_report
     puts "\n#{@links_checked} links checked (#{@num_fails} failures) - #{@total_links - @links_checked} links to go."
     puts "\nTo clear last-checked counter and re-check all links, type: \nxattr .moneta_cache/xattr_cache -index_pointer"
+  end
+
+  def log_failed(url, desc, error)
+    # truncate xattr key names or suffer the consequences
+    @cache.store(url[0..Max_XAttr_Key_Length], "#{desc} (#{url}) failed with #{error} at #{Time.now.to_s}") 
   end
 
   @cache = Moneta::Xattr.new(:file => File.join(File.dirname(__FILE__), ".moneta_cache", "xattr_cache"))
