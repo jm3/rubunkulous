@@ -10,12 +10,14 @@ require 'moneta'
 require 'moneta/basic_file'
 require 'moneta/xattr'
 require 'net/https'
+require 'progressbar'
 require 'rexml/document'
 include REXML
 
 Pointer_Key = 'index_pointer'
 Max_XAttr_Key_Length = 126 # i swear to christ...
 
+@verbose = false
 @start_override = 0
 
 ARGV.each do|arg|
@@ -112,6 +114,7 @@ def check(links)
   links = links[last_index..links.size]
   @total_links = links.size
   puts "#{@total_links} links to check."
+  @pbar = ProgressBar.new("  Checking", links.size)
 
   links.each do |link|
 
@@ -135,15 +138,16 @@ def check(links)
     end
 
     @links_checked += 1
+    @pbar.inc
     @cache.store(Pointer_Key, last_index + @links_checked)
     next unless response
 
     if response.response_code != 200
-      puts "x FAIL #{response.response_code} #{url} (#{@links_checked})"
+      puts "x FAIL #{response.response_code} #{url} (#{@links_checked})" if @verbose
       @num_fails += 1
       log_failed(url, desc, response.response_code)
     else
-      puts "> OK #{url} (#{@links_checked})"
+      puts "> OK #{url} (#{@links_checked})" if @verbose
     end
   end
   print_report
