@@ -77,7 +77,7 @@ def links
     if `which tidy`.empty?
       puts "WARNING: you don't have tidy installed, which means that occasional errors in Delicious's API xml may hang up Rubunkulous. Try: sudo port install tidy  to get it."
     else
-      `tidy -xml .cached_links.xml &> /dev/null` unless `which tidy`.empty?
+      `tidy -xml .cached_links.xml &> /dev/null`
     end
   end
 
