@@ -1,6 +1,6 @@
 # Rubunkulous!
 
-**A reentrant link-checker for delicious power-users, stress-tested with stores of 12,000+ links.**
+**A reentrant link-checker for delicious power-users, stress-tested with 50x the average user's no. of links.**
 
 ## Features
 
