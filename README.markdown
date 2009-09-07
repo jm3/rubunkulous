@@ -20,5 +20,6 @@ Rubunkulous is designed to perform well despite network errors, curl timeouts, e
 
 ## Todo
 
- * cool animated progress indicator with (n)curses
+ * cool animated progress indicator - DONE!
  * test [SAX parsing](http://www.tutorialspoint.com/ruby/ruby_xml_xslt.htm) to see if it's a faster load
+ * explore pipelining more link fetches in parallel (will require synchronized lock on link cursor)
