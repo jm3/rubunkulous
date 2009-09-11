@@ -21,5 +21,6 @@ Rubunkulous is designed to perform well despite network errors, curl timeouts, e
 ## Todo
 
  * cool animated progress indicator - DONE!
+ * use [/posts/recent](http://delicious.com/help/api#posts_recent) and [/posts/update](http://delicious.com/help/api#posts_update) to do smarter change-detection to avoid re-fetches as new links are added. ([/posts/all?hashes](http://delicious.com/help/api#posts_all_hashes) also exists but doesn't look useful in this situation, since we only want new appends to the head of the stack)
  * test [SAX parsing](http://www.tutorialspoint.com/ruby/ruby_xml_xslt.htm) to see if it's a faster load
  * explore pipelining more link fetches in parallel (will require synchronized lock on link cursor)
