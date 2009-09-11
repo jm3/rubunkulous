@@ -1,4 +1,3 @@
-
 GEM_NAME    = "rubunkulous"
 AUTHOR      = "John Manoogian III"
 EMAIL       = "jm3@jm3.net"
@@ -8,9 +7,11 @@ GEM_VERSION = "0.0.2"
 
 spec = Gem::Specification.new do |s|
   s.files = %w(bin/rubunkulous)
-  s.add_dependency('curb')
-  s.add_dependency('moneta')
-  s.add_dependency('progressbar')
+  
+  # my versions are in the commented parens below; YMMV:
+  s.add_dependency('curb') # (0.5.1.0)
+  s.add_dependency('moneta') # (0.6.0)
+  s.add_dependency('progressbar') # (0.0.3)
 
   s.name              = GEM_NAME
   s.version           = GEM_VERSION
