@@ -3,10 +3,13 @@ AUTHOR      = "John Manoogian III"
 EMAIL       = "jm3@jm3.net"
 HOMEPAGE    = "http://jm3.net/"
 SUMMARY     = "reentrant link-checker for del.icio.us power-users"
-GEM_VERSION = "0.0.2"
+GEM_VERSION = "0.0.3"
 
 spec = Gem::Specification.new do |s|
-  s.files = %w(bin/rubunkulous)
+  s.files       = %w(bin/rubunkulous)
+  s.bindir      = "bin"
+  s.executables = ["rubunkulous"]
+  s.default_executable = "rubunkulous"
   
   # my versions are in the commented parens below; YMMV:
   s.add_dependency('curb') # (0.5.1.0)
