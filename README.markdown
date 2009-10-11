@@ -4,7 +4,7 @@
 
 To install:
 
-        sudo gem install gemcutter && gem tumble && sudo gem install rubunkulous
+        sudo gem install rubunkulous -s http://gemcutter.org
 
 ### Features
 
