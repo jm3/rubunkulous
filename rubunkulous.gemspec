@@ -1,6 +1,6 @@
 spec = Gem::Specification.new do |s|
-  s.version           = "0.0.4"
-  s.date              = %q{2009-10-10}
+  s.version           = "0.0.5"
+  s.date              = %q{2009-10-11}
 
   s.name              = "rubunkulous"
   s.author            = "John Manoogian III"
